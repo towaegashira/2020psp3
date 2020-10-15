@@ -61,6 +61,35 @@ typedef struct {
 
 
 ## ソースコードの説明
+l.71 pos=0としてposがsizeより小さいとき以下の処理を実行する
+
+l.73 もし引数keyとarrayCity[pos]のidの値が等しいなら以下のように行う
+
+l.75 resultにposの値を代入する
+
+l.76 ループから抜ける
+
+l.79 resultの値を返す
+
+l.87 leftの値がright以下の時に以下の処理を繰り返す
+
+l.89 leftとrightの中央値をposに代入
+
+l.90 もしkeyとarrayCity[pos]のidの値が等しいなら以下のように行う
+
+l.92 resultにposの値を代入する
+
+l.93 ループから抜ける
+
+l.94 もし引数keyがarrayCity[pos]のidの値より小さければ以下のように行う
+
+l.96 rightにpos-1の答えを代入
+
+l.97 どの場合にも該当しない場合以下のように行う
+
+l.99 leftにpos+1の答えを代入
+
+l.102 resultの値を返す
 
 
 
