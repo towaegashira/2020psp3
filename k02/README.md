@@ -108,10 +108,11 @@ l.117 SearchCityByIDを以下のように定義する
 
 
 ## 出力結果
-
-```
-
-```
+===== Print End =====
+City ID?42201
+the city was found at 20
+42201, 長崎県, 長崎市, 429508, 198716, 230792
+free list. items = 21
 
 ## 修正履歴
 
