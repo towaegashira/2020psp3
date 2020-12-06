@@ -7,16 +7,93 @@
 char StrOriginal[] = "On a dark deseart highway, cool wind in my hair.";
 char StrKey[] = "wind";
 
+int length(const char *s)
+{
+    int n = 0;
+    
+    while(*s++ != '\0')
+    {
+        n++;
+    }
+    return (n);
+}
+
+
+
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
+    int start,pos;
 
+    int text_len = length(text);
+    int key_len = length(key);
+
+
+    for(start=0;text_len-key_len>=start;start++)
+    {
+        for(pos=0;pos <= length(key)-1;pos++)
+        {
+            if(text[start+pos] == key[pos])
+            {
+                if(pos == length(key)-1)
+                {
+                    return &text[start];
+                }
+            }
+            else
+            {
+                break;
+            }
+            
+        }
+    }
+    if(text_len-key_len == start)
+    {
+        return NULL;
+    }
+    
 }
+
 
 char* BMSearch(char text[], char key[])
 {
     //  ここを実装する
+    int text_len = length(text);
+    int key_len = length(key);
+    int index;
+    int key_index;
+    int i;
+    int table[256];
 
+
+    for(i=0;i <= ALPHABET_LEN ;i++)
+    {
+        table[i] = 4;
+    }
+
+    for(i=0;i<=key_len;i++)
+    {
+        table[i] = key_len-i-1;
+    }
+
+    for(index=0;index <= text_len -1;index=index + table[text[index]])
+    {
+        for(key_index=key_len-1;key_index>=0;key_index--)
+        {
+            if(text[index+key_index] == key[key_index])
+            {
+                if(key_index == 0)
+                {
+                    return &text[index];
+                }
+            }
+            else
+            {
+                break;
+            }    
+        }
+    }
+    return NULL;
 }
 
 int main(void)
