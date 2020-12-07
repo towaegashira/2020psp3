@@ -61,33 +61,26 @@ char* BMSearch(char text[], char key[])
     int i;
     int table[256];
     int new_index;
-    int old_index;
 
     for(i=0;i <= ALPHABET_LEN ;i++)
     {
-        table[i] = key_len;
+        table[key[i]]= key_len;
     }
 
     for(i=0;i<=key_len;i++)
     {
-        table[i] = key_len-i-1;
+        table[key[i]] = key_len-i-1;
     }
 
-    for(index=0;index <= text_len -1;index=index + key_index+ table[text[index + key_index]]-key_len+1 )
+    for(index=0;index <= text_len -1;)
     {
-        new_index = index;
-         if(new_index<=old_index)
-        {
-            new_index = index+1;
-
-        }
         for(key_index=key_len-1;key_index>=0;key_index--)
         {
-            if(text[new_index+key_index] == key[key_index])
+            if(text[index+key_index] == key[key_index])
             {
                 if(key_index == 0)
                 {
-                    return &text[new_index];
+                    return &text[index];
                 }
             }
             else
@@ -95,9 +88,17 @@ char* BMSearch(char text[], char key[])
                 break;
             }    
         }
-        old_index = index;
+
+        new_index=index + key_index+ table[text[index + key_index]]-key_len+1;
+        if(new_index<=index)
+        {
+            index = index+1;
+
+        } else {
+            index = new_index;
+        }
     }
-    return NULL;
+     return NULL;
 }
 
 int main(void)
