@@ -47,11 +47,7 @@ char* ForceSearch(char text[], char key[])
             
         }
     }
-    if(text_len-key_len == start)
-    {
         return NULL;
-    }
-    
 }
 
 
@@ -61,14 +57,15 @@ char* BMSearch(char text[], char key[])
     int text_len = length(text);
     int key_len = length(key);
     int index;
-    int key_index;
+    int key_index=key_len-1;
     int i;
     int table[256];
-
+    int new_index;
+    int old_index;
 
     for(i=0;i <= ALPHABET_LEN ;i++)
     {
-        table[i] = 4;
+        table[i] = key_len;
     }
 
     for(i=0;i<=key_len;i++)
@@ -76,15 +73,21 @@ char* BMSearch(char text[], char key[])
         table[i] = key_len-i-1;
     }
 
-    for(index=0;index <= text_len -1;index=index + table[text[index]])
+    for(index=0;index <= text_len -1;index=index + key_index+ table[text[index + key_index]]-key_len+1 )
     {
+        new_index = index;
+         if(new_index<=old_index)
+        {
+            new_index = index+1;
+
+        }
         for(key_index=key_len-1;key_index>=0;key_index--)
         {
-            if(text[index+key_index] == key[key_index])
+            if(text[new_index+key_index] == key[key_index])
             {
                 if(key_index == 0)
                 {
-                    return &text[index];
+                    return &text[new_index];
                 }
             }
             else
@@ -92,6 +95,7 @@ char* BMSearch(char text[], char key[])
                 break;
             }    
         }
+        old_index = index;
     }
     return NULL;
 }
