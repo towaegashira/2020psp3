@@ -109,7 +109,7 @@ void DepthFirstSearch(int size, int matrix[size][size], int start)
     int i,j,s;
     int visited[size];
 
-    for(j=0; j <= size; j++){
+    for(j=0; j <= size-1; j++){
 
         visited[j] = 0;
     }
@@ -125,17 +125,17 @@ void DepthFirstSearch(int size, int matrix[size][size], int start)
 
             visited[val] = 1;
             for(i=0; i <= size-1; i++){
-                if(matrix[val][i] = 0){
+                if(matrix[val][i] == 0){
 
                 }
                 else{
-                    StackPush(matrix[val][i]);
+                    StackPush(i);
                 }
             }
         }
     }
     for(s=0;s<=size-1;s++){
-        if(visited[s] = 1){
+        if(visited[s] == 1){
             PrintStationName(s);
         }
     }
@@ -208,7 +208,7 @@ void BreadthFirstSearch(int size, int matrix[size][size], int start)
     int i,j,s;
     int visited[size];
 
-    for(j=0; j <= size; j++){
+    for(j=0; j <= size-1; j++){
 
         visited[j] = 0;
     }
@@ -225,18 +225,18 @@ void BreadthFirstSearch(int size, int matrix[size][size], int start)
 
             visited[val] = 1;
             for(i=0; i <= size-1; i++){
-                if(matrix[val][i] = 0){
+                if(matrix[val][i] == 0){
 
                 }
                 else{
-                    StackPush(matrix[val][i]);
+                    EnQueue(i);
                 }
             }
 
         }
     }
     for(s=0;s<=size-1;s++){
-        if(visited[s] = 1){
+        if(visited[s] == 1 ){
             PrintStationName(s);
         }
     }
